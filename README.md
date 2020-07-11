@@ -12,38 +12,14 @@ A Keras implementation of YOLOv3 (Tensorflow backend) inspired by [allanzelener/
 ## Quick Start
 
 1. Download YOLOv3 weights from [YOLO website](http://pjreddie.com/darknet/yolo/).
-2. Convert the Darknet YOLO model to a Keras model.
-3. Run YOLO detection.
-
-```
-wget https://pjreddie.com/media/files/yolov3.weights
-python convert.py yolov3.cfg yolov3.weights model_data/yolo.h5
-python yolo_video.py [OPTIONS...] --image, for image detection mode, OR
-python yolo_video.py [video_path] [output_path (optional)]
-```
-
-For Tiny YOLOv3, just do in a similar way, just specify model path and anchor path with `--model model_file` and `--anchors anchor_file`.
+2. Run YOLO detection.
 
 ### Usage
-Use --help to see usage of yolo_video.py:
+Use --help to see usage of yolo_camera.py:
 ```
 usage: yolo_camera.py 
     net = cv2.dnn.readNet('yolov3-test.weights', 'yolov3-test.cfg')
     classes_number = "model_data\test_classes.txt"
-
-optional arguments:
-  -h, --help         show this help message and exit
-  --model MODEL      path to model weight file, default model_data/yolo.h5
-  --anchors ANCHORS  path to anchor definitions, default
-                     model_data/yolo_anchors.txt
-  --classes CLASSES  path to class definitions, default
-                     model_data/coco_classes.txt
-  --gpu_num GPU_NUM  Number of GPU to use, default 1
-  --image            Image detection mode, will ignore all positional arguments
-```
----
-
-4. MultiGPU usage: use `--gpu_num N` to use N GPUs. It is passed to the [Keras multi_gpu_model()](https://keras.io/utils/#multi_gpu_model).
 
 ## Training
 
@@ -72,24 +48,3 @@ If you want to use original pretrained weights for YOLOv3:
     2. rename it as darknet53.weights  
     3. `python convert.py -w darknet53.cfg darknet53.weights model_data/darknet53_weights.h5`  
     4. use model_data/darknet53_weights.h5 in train.py
-
----
-
-## Some issues to know
-
-1. The test environment is
-    - Python 3.5.2
-    - Keras 2.1.5
-    - tensorflow 1.6.0
-
-2. Default anchors are used. If you use your own anchors, probably some changes are needed.
-
-3. The inference result is not totally the same as Darknet but the difference is small.
-
-4. The speed is slower than Darknet. Replacing PIL with opencv may help a little.
-
-5. Always load pretrained weights and freeze layers in the first stage of training. Or try Darknet training. It's OK if there is a mismatch warning.
-
-6. The training strategy is for reference only. Adjust it according to your dataset and your goal. And add further strategy if needed.
-
-7. For speeding up the training process with frozen layers train_bottleneck.py can be used. It will compute the bottleneck features of the frozen model first and then only trains the last layers. This makes training on CPU possible in a reasonable time. See [this](https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html) for more information on bottleneck features.
