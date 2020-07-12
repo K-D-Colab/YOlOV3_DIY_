@@ -48,3 +48,6 @@ If you want to use original pretrained weights for YOLOv3:
     2. rename it as darknet53.weights  
     3. `python convert.py -w darknet53.cfg darknet53.weights model_data/darknet53_weights.h5`  
     4. use model_data/darknet53_weights.h5 in train.py
+    
+<html><head><meta name="viewport" content="width=device-width, minimum-scale=0.1"><title>yolo_v3_architecture.png (2666×1500)</title></head><body style="margin: 0px; background: #0e0e0e;"><img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="https://raw.githubusercontent.com/wizyoung/YOLOv3_TensorFlow/master/docs/yolo_v3_architecture.png" width="1303" height="733"></body></html>
+<html><head><meta name="viewport" content="width=device-width, minimum-scale=0.1"><title>applsci-09-03750-g006.png (2564×2895)</title></head><body style="margin: 0px; background: #0e0e0e;"><img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="https://www.mdpi.com/applsci/applsci-09-03750/article_deploy/html/images/applsci-09-03750-g006.png" width="821" height="928"></body></html>
