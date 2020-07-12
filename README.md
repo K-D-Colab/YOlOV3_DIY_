@@ -49,49 +49,20 @@ If you want to use original pretrained weights for YOLOv3:
     3. `python convert.py -w darknet53.cfg darknet53.weights model_data/darknet53_weights.h5`  
     4. use model_data/darknet53_weights.h5 in train.py
 
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Author</strong></td>
-<td>Trần Vĩnh Toàn- Foundation 8 - VTC AI</td>
-</tr>
-<tr>
-<td><strong>Title</strong></td>
-<td>Computer Vision - EfficientNet For Fruits &amp; Vegetables Detection App</td>
-</tr>
-<tr>
-<td><strong>Topics</strong></td>
-<td>Ứng dụng trong computer vision, sử dụng thuật toán chính là CNN</td>
-</tr>
-<tr>
-<td><strong>Descriptions</strong></td>
-<td>Input sẽ là tấm hình với các loại quả khác nhau và file labels-v2.txt chứa danh sách tên của 130 loại quả tương ứng. Dữ liệu dùng để train là dataset của 130 loại quả có kích thước (100px X 100px). Train toàn bộ dữ liệu này bằng cấu trúc mạng CNN  sử dụng model EfficientNet ( Chi tiết về model : <a href="https://github.com/tensorflow/tpu/tree/master/models/official/efficientnet">https://github.com/tensorflow/tpu/tree/master/models/official/efficientnet</a>, Paper: <a href="https://arxiv.org/abs/1905.11946" rel="nofollow">https://arxiv.org/abs/1905.11946</a>). khi train xong sẽ trả ra output là file trọng số <code>weights</code>. Ta sẽ sử dụng trọng số <code>weights</code> đã train để predict name của các object trong hình</td>
-</tr>
-<tr>
-<td><strong>Links</strong></td>
-<td><a href="https://github.com/tensorflow/tpu/tree/master/models/official/efficientnet">https://github.com/tensorflow/tpu/tree/master/models/official/efficientnet</a> , <a href="https://github.com/rwightman/pytorch-image-models">https://github.com/rwightman/pytorch-image-models</a></td>
-</tr>
-<tr>
-<td><strong>Framework</strong></td>
-<td>PyTorch</td>
-</tr>
-<tr>
-<td><strong>Pretrained Models</strong></td>
-<td>sử dụng weight đã được train sẵn <a href="https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-weights/efficientnet_b3_ra-a5e2fbc7.pth">https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-weights/efficientnet_b3_ra-a5e2fbc7.pth</a> <a href="https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-weights/efficientnet_es_ra-f111e99c.pth">https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-weights/efficientnet_es_ra-f111e99c.pth</a></td>
-</tr>
-<tr>
-<td><strong>Datasets</strong></td>
-<td>Mô hình được train với bộ dữ liệu 130 loại quả tại: <a href="https://www.kaggle.com/moltean/fruits/data" rel="nofollow">https://www.kaggle.com/moltean/fruits/data</a></td>
-</tr>
-<tr>
-<td><strong>Level of difficulty</strong></td>
-<td>Normal +, có thể train lại với tập dữ liệu khác và model khác tốc độ tùy thuộc vào CPU &amp; GPU &amp; data input</td>
-</tr>
-</tbody>
-</table>
+| **Title**      | Home Credit Default Risk|
+| ---------- |-------------------|
+| **Team**       | Nguyễn Hải Linh - hailinh.leo@gmail.com
+| **Predicting** | Predicting Default Risk of loan application, based on Home Credit dataset (it's a Kaggle Competition)
+| **Data**       | I got data from Kaggle Competition, hosted by Home Credit. The dataset includes many csv files from many tables of their database, but for the purpose of making final project for ML course, plus the limitation in time and hardware, I took only 1 table for this practical essay: application.csv
+| **Features**   | There are 122 features, which are raw input data. I created 4 more fields: train-error-mean, train-error-std, train-error-mean, test-error-std to measure the feature importance, then based on that reduced the dimension to only 49.
+| **Models**     | I mainly use XGBoost: ∑𝑗=1𝑇[(∑𝑖∈𝐼𝑗𝑔𝑖)𝑤𝑗+12(∑𝑖∈𝐼𝑗ℎ𝑖+𝜆)𝑤2𝑗]+𝛾𝑇, which is believed to be one of the best model for controlling overfitting. I added cross-validation function: k-fold to utilise the power of XGBoost.
+| **Results**    | 
+|                | XGB training set 150679.000
+|                | XGB test set 92254.000
+|                | XGB auc score 0.748
+|                | MLP training set 150679.000
+|                | MLP test set 92254.000
+|                | MLP auc score 0.605
+| **Discussion** | Decision tree algorithsm is the best for making scoring model. Besides the accuracy / auc metrics that could be maximised by boosted trees (in this project is XGBoost), we can also clearly see feature importance, which is more difficult to find in other modern model like MLP. In financial institution, data is money. With feature importance, we can save a lot by reducing expense on buying personal data, optimise customer experience (less fields in loan application) and save cost for computing.
+| **Future**     | There are still 5 more tables that haven't been exploited this time, due to limitation of time. There other tables will require more data processing skills, which could increase the auc score a little bit (based on other's result on Kaggle).
+|**References**  | https://www.kaggle.com/c/home-credit-default-risk/overview/description
